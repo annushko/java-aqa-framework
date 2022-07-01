@@ -1,0 +1,6 @@
+subprojects {
+    apply plugin: "java-library"
+
+    group "com.github.annusko93"
+    version "0.1-SNAPSHOT"
+}

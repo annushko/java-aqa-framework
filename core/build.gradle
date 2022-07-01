@@ -1,0 +1,7 @@
+group "${group}.framework.core"
+description = "Framework Core"
+
+dependencies {
+    api libs.assertj
+    api libs.jackson
+}

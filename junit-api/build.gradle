@@ -1,0 +1,17 @@
+group "${group}.junit.api"
+description = "JUnit API Tests"
+
+dependencies {
+    implementation project(":core")
+    implementation libs.junit
+    implementation libs.restassured
+}
+
+test {
+    useJUnitPlatform()
+
+    reports {
+        html.required = false
+        junitXml.required = false
+    }
+}

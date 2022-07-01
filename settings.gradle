@@ -1,0 +1,27 @@
+rootProject.name = "java-aqa-framework"
+
+include "junit-api",
+        "junit-ui",
+        "cucumber-api",
+        "cucumber-ui",
+        "core"
+
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+    }
+
+    versionCatalogs {
+        libs {
+            // Required for all projects
+            library("assertj", "org.assertj", "assertj-core").version("3.23.1")
+            library("jackson", "com.fasterxml.jackson.core", "jackson-databind").version("2.13.3")
+
+            // API
+            library("restassured", "io.rest-assured", "rest-assured").version("5.1.1")
+
+            // JUnit
+            library("junit", "org.junit.jupiter", "junit-jupiter-engine").version("5.8.2")
+        }
+    }
+}

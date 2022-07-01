@@ -1,0 +1,16 @@
+group "${group}.junit.ui"
+description = "JUnit UI Tests"
+
+dependencies {
+    implementation project(":core")
+    implementation libs.junit
+}
+
+test {
+    useJUnitPlatform()
+
+    reports {
+        html.required = false
+        junitXml.required = false
+    }
+}
