@@ -1,10 +1,11 @@
 rootProject.name = "java-aqa-framework"
 
-include "junit-api",
+include "core",
+        "junit-core",
+        "junit-api",
         "junit-ui",
         "cucumber-api",
-        "cucumber-ui",
-        "core"
+        "cucumber-ui"
 
 dependencyResolutionManagement {
     repositories {
@@ -13,15 +14,41 @@ dependencyResolutionManagement {
 
     versionCatalogs {
         libs {
+            version("junit-jupiter", "5.8.2")
+            version("rest-assured", "5.1.1")
+            version("log4j", "2.18.0")
+            version("selenium", "4.1.4")
+
             // Required for all projects
             library("assertj", "org.assertj", "assertj-core").version("3.23.1")
             library("jackson", "com.fasterxml.jackson.core", "jackson-databind").version("2.13.3")
 
+            // Logging
+            library("log4j-core", "org.apache.logging.log4j", "log4j-core").versionRef("log4j")
+            library("log4j-jul", "org.apache.logging.log4j", "log4j-jul").versionRef("log4j")
+            library("log4j-slf4j", "org.apache.logging.log4j", "log4j-slf4j-impl").versionRef("log4j")
+
             // API
-            library("restassured", "io.rest-assured", "rest-assured").version("5.1.1")
+            library("restassured", "io.rest-assured", "rest-assured").versionRef("rest-assured")
+            library("restassuredschema", "io.rest-assured", "json-schema-validator").versionRef("rest-assured")
+
+            // UI
+            library("selenium-chrome", "org.seleniumhq.selenium", "selenium-chrome-driver").versionRef("selenium")
+            library("selenium-firefox", "org.seleniumhq.selenium", "selenium-firefox-driver").versionRef("selenium")
+            library("selenium-support", "org.seleniumhq.selenium", "selenium-support").versionRef("selenium")
+
+            // Json
+            library("jsonschema", "com.networknt", "json-schema-validator").version("1.0.71")
 
             // JUnit
-            library("junit", "org.junit.jupiter", "junit-jupiter-engine").version("5.8.2")
+            library("junit", "org.junit.jupiter", "junit-jupiter-engine").versionRef("junit-jupiter")
+            library("junitparams", "org.junit.jupiter", "junit-jupiter-params").versionRef("junit-jupiter")
+
+            // Bundles
+            bundle("log4j", ["log4j-core", "log4j-jul", "log4j-slf4j"])
+            bundle("junit", ["junit", "junitparams"])
+            bundle("restassured", ["restassured", "restassuredschema"])
+            bundle("selenium", ["selenium-chrome", "selenium-firefox", "selenium-support"])
         }
     }
 }

@@ -1,0 +1,7 @@
+{
+  "chromeOptions": {
+    "args": [
+      "window-size=1200,800"
+    ]
+  }
+}

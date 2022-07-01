@@ -2,8 +2,8 @@ group "${group}.junit.ui"
 description = "JUnit UI Tests"
 
 dependencies {
-    implementation project(":core")
-    implementation libs.junit
+    implementation project(":junit-core")
+    implementation libs.bundles.selenium
 }
 
 test {
@@ -13,4 +13,26 @@ test {
         html.required = false
         junitXml.required = false
     }
+
+    /*
+    * For parallel strategy:
+    *
+    * 1. Fixed strategy:
+    * "junit.jupiter.execution.parallel.config.strategy"          : "fixed",
+    * "junit.jupiter.execution.parallel.config.fixed.parallelism" : "8"
+    *
+    * 2. Dynamic strategy:
+    * "junit.jupiter.execution.parallel.config.dynamic.factor"   : "1"
+    * (count of threads = count of available processors*1)
+    *
+    * 3. Custom strategy:
+    * "junit.jupiter.execution.parallel.config.custom.class" : for example, org.example.CustomStrategy
+    */
+    systemProperties = [
+            "java.util.logging.manager"                                : "org.apache.logging.log4j.jul.LogManager",
+            "junit.jupiter.execution.parallel.enabled"                 : "true",
+            "junit.jupiter.execution.parallel.config.strategy"         : "fixed",
+            "junit.jupiter.execution.parallel.config.fixed.parallelism": "2"
+    ]
+
 }

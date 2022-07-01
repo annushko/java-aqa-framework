@@ -2,6 +2,10 @@ group "${group}.framework.core"
 description = "Framework Core"
 
 dependencies {
+    api libs.bundles.log4j
     api libs.assertj
     api libs.jackson
+    api libs.jsonschema
+
+    api group: "org.apache.httpcomponents", name: "httpclient", version: "4.5.13"
 }

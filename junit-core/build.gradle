@@ -1,0 +1,7 @@
+group "${group}.junit.core"
+description = "JUnit Core"
+
+dependencies {
+    api project(":core")
+    api libs.bundles.junit
+}
