@@ -14,4 +14,9 @@ test {
         html.required = false
         junitXml.required = false
     }
+
+    systemProperties = [
+            "junit.jupiter.testmethod.order.default"      : 'org.junit.jupiter.api.MethodOrderer$OrderAnnotation',
+            "junit.jupiter.testinstance.lifecycle.default": "per_class"
+    ]
 }
