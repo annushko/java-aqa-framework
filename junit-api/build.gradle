@@ -3,8 +3,8 @@ description = "JUnit API Tests"
 
 dependencies {
     implementation project(":core")
-    implementation libs.junit
-    implementation libs.restassured
+    implementation libs.bundles.junit
+    implementation libs.bundles.restassured
 }
 
 test {
