@@ -1,4 +1,4 @@
-package in.reqres.tests;
+package in.reqres.restassured.tests;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -9,24 +9,26 @@ import static org.hamcrest.Matchers.blankOrNullString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
-public class UsersCrudTest extends AbstractReqresInTest {
+public class UsersCrudTest extends AbstractRestAssured {
 
     private String id;
+    private String name = "morpheus";
 
     @Test
     @Order(1)
     public void postUser() {
+        String job = "leader";
         Response response = given().contentType(ContentType.JSON)
-                                   .body("{\n" +
-                                         "    \"name\": \"morpheus\",\n" +
-                                         "    \"job\": \"leader\"\n" +
+                                   .body("{" +
+                                         "    \"name\": \"" + name + "\"," +
+                                         "    \"job\": \"" + job + "\"" +
                                          "}")
                                    .post("/api/users");
         response.then()
                 .assertThat()
                 .statusCode(201)
-                .body("name", equalTo("morpheus"),
-                      "job", equalTo("leader"),
+                .body("name", equalTo(name),
+                      "job", equalTo(job),
                       "id", notNullValue());
         this.id = response.path("id");
     }
@@ -34,31 +36,33 @@ public class UsersCrudTest extends AbstractReqresInTest {
     @Test
     @Order(2)
     public void putUser() {
+        String job = "zion resident";
         Response response = given().contentType(ContentType.JSON)
-                                   .body("{\n" +
-                                         "    \"name\": \"morpheus\",\n" +
-                                         "    \"job\": \"zion resident\"\n" +
+                                   .body("{" +
+                                         "    \"name\": \"" + name + "\"," +
+                                         "    \"job\": \"" + job + "\"" +
                                          "}")
                                    .put("/api/users/{id}", id);
         response.then()
                 .assertThat()
                 .statusCode(200)
-                .body("name", equalTo("morpheus"),
-                      "job", equalTo("zion resident"));
+                .body("name", equalTo(name),
+                      "job", equalTo(job));
     }
 
     @Test
     @Order(3)
     public void patchUser() {
+        String job = "zion";
         Response response = given().contentType(ContentType.JSON)
-                                   .body("{\n" +
-                                         "    \"job\": \"zion\"\n" +
+                                   .body("{" +
+                                         "    \"job\": \"" + job + "\"" +
                                          "}")
                                    .put("/api/users/{id}", id);
         response.then()
                 .assertThat()
                 .statusCode(200)
-                .body("job", equalTo("zion"));
+                .body("job", equalTo(job));
     }
 
     @Test

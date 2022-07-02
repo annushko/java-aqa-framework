@@ -22,7 +22,10 @@ dependencyResolutionManagement {
 
             // API
             library("restassured", "io.rest-assured", "rest-assured").versionRef("rest-assured")
-            library("jsonschemavalidator", "io.rest-assured", "json-schema-validator").versionRef("rest-assured")
+            library("restassuredschema", "io.rest-assured", "json-schema-validator").versionRef("rest-assured")
+
+            // Json
+            library("jsonschema", "com.networknt", "json-schema-validator").version("1.0.71")
 
             // JUnit
             library("junit", "org.junit.jupiter", "junit-jupiter-engine").versionRef("junit-jupiter")
@@ -30,7 +33,7 @@ dependencyResolutionManagement {
 
             // Bundles
             bundle("junit", ["junit", "junitparams"])
-            bundle("restassured", ["restassured", "jsonschemavalidator"])
+            bundle("restassured", ["restassured", "restassuredschema"])
         }
     }
 }
