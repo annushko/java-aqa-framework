@@ -1,9 +1,9 @@
 package in.reqres.apache.test;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.github.annusko93.core.http.apachehttp.HttpExecutor;
-import com.github.annusko93.core.http.apachehttp.JsonBody;
-import com.github.annusko93.core.jackson.JacksonMapper;
+import com.github.annushko.core.http.apache.HttpExecutor;
+import com.github.annushko.core.http.apache.JsonBody;
+import com.github.annushko.core.jackson.JacksonMapper;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Order;

@@ -1,11 +1,11 @@
 package in.reqres.apache.test;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.github.annusko93.core.http.apachehttp.HttpExecutor;
-import com.github.annusko93.core.http.apachehttp.JsonSchemaReader;
-import com.github.annusko93.core.jackson.JacksonMapper;
-import com.github.annusko93.junit.extension.HttpExecutorParameterResolver;
-import com.github.annusko93.junit.extension.JacksonMapperParameterResolver;
+import com.github.annushko.core.http.apache.HttpExecutor;
+import com.github.annushko.core.http.apache.JsonSchemaReader;
+import com.github.annushko.core.jackson.JacksonMapper;
+import com.github.annushko.junit.extension.HttpExecutorParameterResolver;
+import com.github.annushko.junit.extension.JacksonMapperParameterResolver;
 import com.networknt.schema.ValidationMessage;
 import in.reqres.AbstractReqresInTest;
 import org.assertj.core.api.SoftAssertions;

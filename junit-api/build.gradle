@@ -2,8 +2,7 @@ group "${group}.junit.api"
 description = "JUnit API Tests"
 
 dependencies {
-    implementation project(":core")
-    implementation libs.bundles.junit
+    implementation project(":junit-core")
     implementation libs.bundles.restassured
 }
 
@@ -30,6 +29,7 @@ test {
     * "junit.jupiter.execution.parallel.config.custom.class" : for example, org.example.CustomStrategy
     */
     systemProperties = [
+            "java.util.logging.manager"                             : "org.apache.logging.log4j.jul.LogManager",
             "junit.jupiter.testmethod.order.default"                : 'org.junit.jupiter.api.MethodOrderer$OrderAnnotation',
             "junit.jupiter.testinstance.lifecycle.default"          : "per_class",
             "junit.jupiter.execution.parallel.enabled"              : "true",
