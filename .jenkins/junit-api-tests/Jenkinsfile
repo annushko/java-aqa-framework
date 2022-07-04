@@ -1,0 +1,41 @@
+props = """\
+"""
+
+pipeline {
+    agent any
+
+    parameters {
+        string(name: 'BRANCH', defaultValue: 'master', description: 'Target branch')
+
+        text(name: 'PROPERTIES', defaultValue: props, description: 'Enter some information about the person')
+    }
+
+    stages {
+        stage('Pull code') {
+            steps {
+                git url: 'https://github.com/annushko/java-aqa-framework.git', branch: "${params.BRANCH}",
+                        credentialsId: 'github'
+            }
+        }
+        stage('Write config') {
+            steps {
+                writeFile(file: "junit-api/src/main/resources/junit-platform.properties", text: "${params.PROPERTIES}", encoding: "UTF-8")
+            }
+        }
+        stage('Run tests') {
+            steps {
+                sh "chmod +x gradlew"
+                sh "./gradlew :junit-api:test --tests \"in.reqres.*\""
+            }
+        }
+    }
+
+    post {
+        always {
+            allure results: [[path: "junit-api/allure-results"]]
+        }
+        cleanup {
+            deleteDir()
+        }
+    }
+}
