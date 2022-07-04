@@ -7,19 +7,19 @@ import java.util.List;
 
 public abstract class AbstractFragment extends AbstractWebEntity {
 
-    protected abstract WebElement getRootElement();
+    protected abstract WebElement getRoot();
 
     protected WebElement getChildElement(By by) {
-        return getRootElement().findElement(by);
+        return getRoot().findElement(by);
     }
 
     protected List<WebElement> getChildElements(By by) {
-        return getRootElement().findElements(by);
+        return getRoot().findElements(by);
     }
 
     @Override
     public AbstractFragment waitForLoad() {
-        driver.getWaiter().waitForVisibility(getRootElement());
+        waiter.forElementVisibleBy(getRoot());
         return this;
     }
 

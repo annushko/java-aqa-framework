@@ -17,18 +17,18 @@ public class WebFactory {
         this.webUrl = webUrl;
     }
 
-    public <T extends AbstractWebEntity> T newInstance(Class<T> pageClassToProxy) {
-        return this.newInstance(pageClassToProxy, null);
+    public <T extends AbstractWebEntity> T newInstance(Class<T> clazz) {
+        return this.newInstance(clazz, null);
     }
 
-    public <T extends AbstractWebEntity> T newInstance(Class<T> pageClassToProxy, WebElement root) {
+    public <T extends AbstractWebEntity> T newInstance(Class<T> clazz, WebElement root) {
         try {
             T webEntity = null;
             if (root != null) {
-                Constructor<T> constructor = pageClassToProxy.getConstructor(WebElement.class);
+                Constructor<T> constructor = clazz.getConstructor(WebElement.class);
                 webEntity = constructor.newInstance(root);
             } else {
-                final var constructor = pageClassToProxy.getConstructor();
+                final var constructor = clazz.getConstructor();
                 webEntity = constructor.newInstance();
                 PageFactory.initElements(this.driver, webEntity);
             }
@@ -37,9 +37,9 @@ public class WebFactory {
             postProcess(webEntity);
             return webEntity;
         } catch (NoSuchMethodException e) {
-            throw new RuntimeException(String.format("Page %s should have empty default constructor", pageClassToProxy), e);
+            throw new RuntimeException(String.format("Page %s should have empty default constructor", clazz), e);
         } catch (InvocationTargetException | InstantiationException | IllegalAccessException e) {
-            throw new RuntimeException(String.format("Unable to create new instance of class %s", pageClassToProxy), e);
+            throw new RuntimeException(String.format("Unable to create new instance of class %s", clazz), e);
         }
     }
 

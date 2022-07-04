@@ -11,7 +11,7 @@ public class AbstractComponent extends AbstractFragment {
     }
 
     @Override
-    protected WebElement getRootElement() {
+    protected WebElement getRoot() {
         return root;
     }
 

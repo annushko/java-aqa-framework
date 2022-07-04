@@ -1,4 +1,4 @@
-package com.github.annushko.core.junit.extension;
+package com.github.annushko.core.junit.extension.driver;
 
 import com.github.annushko.core.driver.WrappedDriver;
 import com.github.annushko.core.driver.WrappedDriverFactory;

@@ -1,9 +1,9 @@
 package com.github.annushko;
 
 import com.github.annushko.core.driver.WrappedDriver;
-import com.github.annushko.core.junit.extension.WrappedDriverParameterResolver;
+import com.github.annushko.core.junit.extension.driver.WrappedDriverParameterResolver;
 import com.github.annushko.core.junit.extension.UITestWatcher;
-import com.github.annushko.core.junit.extension.WrappedDriverFactoryExtension;
+import com.github.annushko.core.junit.extension.driver.WrappedDriverFactoryExtension;
 import com.github.annushko.core.ui.WebFactory;
 import com.github.annushko.junit.extension.context.TestContext;
 import com.github.annushko.junit.extension.context.TestContextParameterResolver;

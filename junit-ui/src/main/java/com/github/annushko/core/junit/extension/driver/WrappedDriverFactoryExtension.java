@@ -1,4 +1,4 @@
-package com.github.annushko.core.junit.extension;
+package com.github.annushko.core.junit.extension.driver;
 
 import com.github.annushko.core.driver.DriverSettings;
 import com.github.annushko.core.driver.DriverTimeouts;
@@ -33,7 +33,7 @@ public class WrappedDriverFactoryExtension implements BeforeAllCallback {
         var settings = new DriverSettings(driverClass, capabilityFile, hubUrl,
                                           new DriverTimeouts(timeout, frequency));
         log.info(settings);
-        var factory = new WrappedDriverFactory(driverClass, capabilityFile, hubUrl, settings);
+        var factory = new WrappedDriverFactory(settings);
         context.getRoot()
                .getStore(ExtensionContext.Namespace.GLOBAL)
                .put(WrappedDriverFactory.class, factory);

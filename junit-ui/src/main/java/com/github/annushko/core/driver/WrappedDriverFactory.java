@@ -22,10 +22,10 @@ public class WrappedDriverFactory {
     private final String hubUrl;
     private final DriverSettings settings;
 
-    public WrappedDriverFactory(String driverClass, String capabilityFile, String hubUrl, DriverSettings settings) {
-        this.driverClass = driverClass;
-        this.capabilityFile = capabilityFile;
-        this.hubUrl = hubUrl;
+    public WrappedDriverFactory(DriverSettings settings) {
+        this.driverClass = settings.getDriverClass();
+        this.capabilityFile = settings.getCapabilityFile();
+        this.hubUrl = settings.getHubUrl();
         this.settings = settings;
     }
 
