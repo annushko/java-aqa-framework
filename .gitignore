@@ -2,6 +2,7 @@
 .idea
 build
 junit-platform.properties
+allure-results
 
 chromedriver.exe
 chromedriver
