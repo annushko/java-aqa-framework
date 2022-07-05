@@ -19,16 +19,25 @@ public class HeaderFragment extends AbstractFragment {
     }
 
     public void enterSearch(String query) {
-        WebElement input = waiter.forChildVisibleBy(getRoot(), By.cssSelector("input.search-text-input"));
+        var input = waiter.forChildVisibleBy(getRoot(), By.cssSelector("input.search-text-input"));
         input.click();
         input.sendKeys(query);
     }
 
+    public void clickOnSearchButton() {
+        waiter.forChildVisibleBy(getRoot(), By.cssSelector("form#search [type='submit']")).click();
+    }
+
     public List<String> getAllSearchTips() {
-        return waiter.forAllChildVisibleBy(getRoot(), By.cssSelector("div.search-tips-body li a"))
-                     .stream()
-                     .map(WebElement::getText)
-                     .collect(Collectors.toList());
+        return allSearchTips()
+                       .stream()
+                       .map(WebElement::getText)
+                       .collect(Collectors.toList());
+    }
+
+    private List<WebElement> allSearchTips() {
+        waitForLoad();
+        return waiter.forAnyChildPresentBy(getRoot(), By.cssSelector("div.search-tips-body li a"));
     }
 
 }

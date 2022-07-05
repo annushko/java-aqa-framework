@@ -19,7 +19,8 @@ public abstract class AbstractFragment extends AbstractWebEntity {
 
     @Override
     public AbstractFragment waitForLoad() {
-        waiter.forElementVisibleBy(getRoot());
+        waiter.documentReady();
+        waiter.jQueryToFinish();
         return this;
     }
 

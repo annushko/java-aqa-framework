@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -48,16 +49,14 @@ public class Waiter {
         });
     }
 
-    public List<WebElement> forAllChildVisibleBy(WebElement root, By by) {
+    public List<WebElement> forAnyChildPresentBy(WebElement root, By by) {
         return waiter().until(new Function<>() {
             @Override
             public List<WebElement> apply(WebDriver webDriver) {
                 try {
                     var elements = root.findElements(by);
                     if (elements.size() != 0) {
-                        if (elements.stream().allMatch(WebElement::isDisplayed)) {
-                            return elements;
-                        }
+                        return elements;
                     }
                     return null;
                 } catch (StaleElementReferenceException e) {
@@ -83,6 +82,29 @@ public class Waiter {
             @Override
             public String toString() {
                 return "Document to be ready";
+            }
+        });
+    }
+
+    public boolean jQueryToFinish() {
+        return jQueryToFinish(timeout);
+    }
+
+    public boolean jQueryToFinish(Duration timeout) {
+        return waiter(timeout).until(new Function<>() {
+
+            @Override
+            public Boolean apply(WebDriver driver) {
+                try {
+                    return (Boolean) ((JavascriptExecutor) driver).executeScript("return !!window.jQuery && window.jQuery.active == 0");
+                } catch (TimeoutException e) {
+                    return false;
+                }
+            }
+
+            @Override
+            public String toString() {
+                return "jQuery to finish";
             }
         });
     }

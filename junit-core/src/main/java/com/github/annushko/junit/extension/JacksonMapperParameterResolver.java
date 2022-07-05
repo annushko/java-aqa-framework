@@ -16,8 +16,7 @@ public class JacksonMapperParameterResolver implements ParameterResolver {
 
     @Override
     public Object resolveParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
-        // Make a copy, so we can change configuration in test
-        return JacksonHolder.DEFAULT.copy();
+        return JacksonHolder.DEFAULT;
     }
 
 }

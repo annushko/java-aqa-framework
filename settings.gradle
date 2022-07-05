@@ -17,7 +17,7 @@ dependencyResolutionManagement {
             version("junit-jupiter", "5.8.2")
             version("rest-assured", "5.1.1")
             version("log4j", "2.18.0")
-            version("selenium", "4.1.4")
+            version("selenium", "4.2.2")
 
             // Required for all projects
             library("assertj", "org.assertj", "assertj-core").version("3.23.1")
